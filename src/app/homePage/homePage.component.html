@@ -1,0 +1,32 @@
+<div class="well well-lg content-wrap">
+    <form (ngSubmit)="getCountriesByRegion(data)">
+        <div class="form-group">
+            <label>County Name Search:</label>
+            <input type="text" class="form-control" name="search" placeholder="Search by Country Name" autocomplete="off" [(ngModel)]="data"
+                required [ngModelOptions]="{standalone: true}">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    <hr>
+    <ul class="country-list">
+        <li class="list-item" *ngFor="let country of countries">
+            <div class="disp-flex">
+                <label>{{country.name}}</label>
+                <span class="icon-flag" [ngStyle]="{'background-image': 'url('+country.flag+')'}"></span>
+            </div>
+            <hr>
+            <div class="disp-flex flex-grow">
+                <label class="text-block">Capital: <span>{{country.name}}</span></label>
+                <label class="text-block">Region: <span>{{country.region}}</span></label>
+                <label class="text-block">Native Name: <span>{{country.nativeName}}</span></label>
+            </div>
+            <hr>
+            <div class="disp-flex space-no">
+                <label class="text-block">
+                    Currency Code:
+                    <span *ngFor="let currency of country.currencies; let $index = index">{{country.currencies.length - 1 === $index ? currency.code : currency.code + ','}}</span>
+                </label>
+            </div>
+        </li>
+    </ul>
+</div>
